@@ -1,0 +1,13 @@
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\bin\Debug\netcoreapp3.1\F1TelemetryClient.exe
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\bin\Debug\netcoreapp3.1\F1TelemetryClient.deps.json
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\bin\Debug\netcoreapp3.1\F1TelemetryClient.runtimeconfig.json
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\bin\Debug\netcoreapp3.1\F1TelemetryClient.runtimeconfig.dev.json
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\bin\Debug\netcoreapp3.1\F1TelemetryClient.dll
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\bin\Debug\netcoreapp3.1\F1TelemetryClient.pdb
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\obj\Debug\netcoreapp3.1\F1TelemetryClient.csprojAssemblyReference.cache
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\obj\Debug\netcoreapp3.1\F1TelemetryClient.AssemblyInfoInputs.cache
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\obj\Debug\netcoreapp3.1\F1TelemetryClient.AssemblyInfo.cs
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\obj\Debug\netcoreapp3.1\F1TelemetryClient.csproj.CoreCompileInputs.cache
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\obj\Debug\netcoreapp3.1\F1TelemetryClient.dll
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\obj\Debug\netcoreapp3.1\F1TelemetryClient.pdb
+C:\Users\alegr\Desktop\Personal\F1TelemetryClient\obj\Debug\netcoreapp3.1\F1TelemetryClient.genruntimeconfig.cache
