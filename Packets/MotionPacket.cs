@@ -7,5 +7,5 @@ namespace F1TelemetryClient.Packets
     public class MotionPacket
     {
     }
-    public class 
+    
 }

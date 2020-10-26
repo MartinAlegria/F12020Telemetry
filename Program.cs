@@ -34,9 +34,11 @@ namespace F1TelemetryClient
             while (true)
             {
                 data = newsock.Receive(ref sender);
+                //Console.WriteLine(data.Length);
                 Packet packet = new Packet(data);
-                Console.WriteLine("PACKET TYPE: {0}:", data[5]);
-                Console.WriteLine("PACKET TYPE: {0}:", packet.getPacketType());
+                Console.WriteLine(packet.ToString());
+
+                
             }
         }
     }
