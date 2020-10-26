@@ -1,9 +1,8 @@
-﻿using System;
+﻿using F1TelemetryClient;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-
-
 
 namespace F1TelemetryClient
 {
@@ -22,21 +21,19 @@ namespace F1TelemetryClient
 
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
 
-            data = newsock.Receive(ref sender);
-
-            Console.WriteLine("Message received from {0}:", sender.ToString());
-            Console.WriteLine(Encoding.ASCII.GetString(data, 0, data.Length));
-
-            string welcome = "Welcome to my test server";
-            data = Encoding.ASCII.GetBytes(welcome);
-            newsock.Send(data, data.Length, sender);
-
             while (true)
             {
                 data = newsock.Receive(ref sender);
                 //Console.WriteLine(data.Length);
                 Packet packet = new Packet(data);
-                Console.WriteLine(packet.ToString());
+                //Console.WriteLine(packet.ToString());
+                if (packet.getPacketType() == "Motion")
+                {
+                    MotionPacket motionPacket = new MotionPacket(data);
+                    Console.WriteLine(Environment.NewLine);
+                    Console.WriteLine("-------------------");
+                    Console.WriteLine(motionPacket.carMotionData.worldPositionY);
+                }
 
                 
             }

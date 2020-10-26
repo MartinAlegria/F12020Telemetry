@@ -5,19 +5,23 @@ namespace F1TelemetryClient
 {
     public class Packet
     {
-        public UInt16 packetFormat;             // 2020
-        public byte gameMajorVersion;         // Game major version - "X.00"
-        public byte gameMinorVersion;         // Game minor version - "1.XX"
-        public byte packetVersion;            // Version of this packet type, all start from 1
-        public byte packetId;                 // Identifier for the packet type, see below
-        public UInt64 sessionUID;               // Unique identifier for the session
-        public float sessionTime;              // Session timestamp
-        public UInt32 frameIdentifier;          // Identifier for the frame the data was retrieved on
-        public byte playerCarIndex;           // Index of player's car in the array
+        public UInt16 packetFormat { get; set; }             // 2020
+        public byte gameMajorVersion { get; set; }        // Game major version - "X.00"
+        public byte gameMinorVersion { get; set; }        // Game minor version - "1.XX"
+        public byte packetVersion { get; set; }            // Version of this packet type, all start from 1
+        public byte packetId { get; set; }                 // Identifier for the packet type, see below
+        public UInt64 sessionUID { get; set; }               // Unique identifier for the session
+        public float sessionTime { get; set; }             // Session timestamp
+        public UInt32 frameIdentifier { get; set; }         // Identifier for the frame the data was retrieved on
+        public byte playerCarIndex { get; set; }          // Index of player's car in the array
 
         // ADDED IN BETA 2: 
-        public byte secondaryPlayerCarIndex;  // Index of secondary player's car in the array (splitscreen)
-                                              // 255 if no second player
+        public byte secondaryPlayerCarIndex { get; set; }  // Index of secondary player's car in the array (splitscreen)
+                                                           // 255 if no second 
+
+        public int lastIndex { get; set; }
+
+        public byte[] baseData { get; set; }
 
         public Packet(byte[] packetData)
         {
@@ -61,6 +65,9 @@ namespace F1TelemetryClient
             //ONE BYTE FOR THE NEXT TWO
             playerCarIndex = packetData[22];
             secondaryPlayerCarIndex = packetData[23];
+
+            lastIndex = 24;
+            baseData = packetData;
         }
 
         public override string ToString()
