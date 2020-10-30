@@ -11,7 +11,7 @@ namespace F1TelemetryClient
         public static void Main()
         {
             byte[] data = new byte[1024];
-            IPAddress myAddress = IPAddress.Parse("192.168.0.2");
+            IPAddress myAddress = IPAddress.Parse("192.168.0.9");
             IPEndPoint ipep = new IPEndPoint(myAddress, 20777);
             UdpClient newsock = new UdpClient(ipep);
 
@@ -32,7 +32,10 @@ namespace F1TelemetryClient
                     MotionPacket motionPacket = new MotionPacket(data);
                     Console.WriteLine(Environment.NewLine);
                     Console.WriteLine("-------------------");
-                    Console.WriteLine(motionPacket.carMotionData.worldPositionY);
+                    Console.WriteLine("Pos Y: " +motionPacket.carMotionData.worldPositionY);
+                    Console.WriteLine("VelX: " + motionPacket.localVelX);
+                    Console.WriteLine("VelY: " + motionPacket.localVelY);
+                    Console.WriteLine("VelZ: " + motionPacket.localVelZ);
                 }
 
                 

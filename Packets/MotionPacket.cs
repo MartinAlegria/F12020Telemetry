@@ -22,9 +22,10 @@ namespace F1TelemetryClient
         public float angularVelX { get; set; }
         public float angularVelY { get; set; }
         public float angularVelZ { get; set; }
-        public float anuglarAccX { get; set; }
+        public float angularAccX { get; set; }
         public float angularAccY { get; set; }
         public float angularAccZ { get; set; }
+        public float frontWheelAngle { get; set; }
 
 
 
@@ -32,9 +33,187 @@ namespace F1TelemetryClient
 
         public MotionPacket(byte[] packetData): base(packetData)
         {
+            //Extract CarMotionData
             carMotionData = new CarMotionData(baseData, lastIndex);
-            Console.Write(carMotionData.lastIndex);
-            
+
+            //Extract Motion Data Left
+
+            byte[] fourByteHelper = new byte[4];
+            int index = carMotionData.lastIndex;
+            float[] wheelDataHelper = new float[4];
+
+            //SuspensionPosition is 4 bytes (float)fo each wheel (RL,RR,FL,RF)
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                wheelDataHelper[i] = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+            suspensionPosition = new WheelData(wheelDataHelper);
+
+            //SuspensionVelocity is 4 bytes (float)fo each wheel (RL,RR,FL,RF)
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                wheelDataHelper[i] = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+            suspensionVelocity = new WheelData(wheelDataHelper);
+
+            //SuspensionAcceleration is 4 bytes (float)fo each wheel (RL,RR,FL,RF)
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                wheelDataHelper[i] = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+            suspensionAcceleration = new WheelData(wheelDataHelper);
+
+            //WheelSpeed is 4 bytes (float)fo each wheel (RL,RR,FL,RF)
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                wheelDataHelper[i] = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+            wheelSpeed = new WheelData(wheelDataHelper);
+
+            //WheelSlip is 4 bytes (float)fo each wheel (RL,RR,FL,RF)
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                wheelDataHelper[i] = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+            wheelSlip = new WheelData(wheelDataHelper);
+
+            //localVelocityX
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                localVelX = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //localVelocityY
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                localVelY = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //localVelocityZ
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                localVelZ = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //angularVelocityX
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                angularVelX = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //angularVelocityy
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                angularVelY = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //angularVelocityZ
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                angularVelZ = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //angularAccelerationX
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                angularAccX = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //angularAccelerationY
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                angularAccY = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //angularAccelerationZ
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                angularAccZ = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+            //frontWheelAngle
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = index; j < index + 4; j++)
+                {
+                    fourByteHelper[j - index] = baseData[j];
+                }
+                frontWheelAngle = BitConverter.ToSingle(fourByteHelper, 0);
+                index += 4;
+            }
+
+
+
         }
     }
 
@@ -225,6 +404,15 @@ namespace F1TelemetryClient
         public float RearRight { get; set; }
         public float FrontLeft { get; set; }
         public float FrontRight { get; set; }
+
+        public WheelData(float[] data)
+        {
+            RearLeft = data[0];
+            RearRight = data[1];
+            FrontLeft = data[2];
+            FrontRight = data[3];
+        }
+
     }
     
 }
