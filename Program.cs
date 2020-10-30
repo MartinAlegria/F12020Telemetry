@@ -29,9 +29,7 @@ namespace F1TelemetryClient
                 //Console.WriteLine(packet.ToString());
                 if (packet.getPacketType() == "Motion")
                 {
-                    MotionPacket motionPacket = new MotionPacket(data);
-                    Console.WriteLine(Environment.NewLine);
-                    Console.WriteLine("-------------------");
+                   
                     
                 }
 
