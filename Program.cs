@@ -32,10 +32,7 @@ namespace F1TelemetryClient
                     MotionPacket motionPacket = new MotionPacket(data);
                     Console.WriteLine(Environment.NewLine);
                     Console.WriteLine("-------------------");
-                    Console.WriteLine("Pos Y: " +motionPacket.carMotionData.worldPositionY);
-                    Console.WriteLine("VelX: " + motionPacket.localVelX);
-                    Console.WriteLine("VelY: " + motionPacket.localVelY);
-                    Console.WriteLine("VelZ: " + motionPacket.localVelZ);
+                    
                 }
 
                 

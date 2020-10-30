@@ -10,7 +10,7 @@ namespace F1TelemetryClient
         //public Packet basePacket;
 
         //60 BYTES OF CAR MOTION DATA
-        public CarMotionData carMotionData { get; set; }
+        public CarMotionData[] gridMotionData { get; set; }
         public WheelData suspensionPosition { get; set; }
         public WheelData suspensionVelocity { get; set; }
         public WheelData suspensionAcceleration { get; set; }
@@ -33,13 +33,23 @@ namespace F1TelemetryClient
 
         public MotionPacket(byte[] packetData): base(packetData)
         {
-            //Extract CarMotionData
-            carMotionData = new CarMotionData(baseData, lastIndex);
+
+            gridMotionData = new CarMotionData[22];
+            //Extract CarMotionData for every car in the grid (22 Cars max)
+            /* 
+             TODO: SET THE LOOP TO THE NUMBER OF CARS ON TRACK
+            for (int i = 0; i < 22; i++)
+            {
+                gridMotionData[i] = new CarMotionData(baseData, lastIndex);
+                lastIndex = gridMotionData[i].lastIndex;
+            }
+             */
+
 
             //Extract Motion Data Left
 
             byte[] fourByteHelper = new byte[4];
-            int index = carMotionData.lastIndex;
+            int index = lastIndex;
             float[] wheelDataHelper = new float[4];
 
             //SuspensionPosition is 4 bytes (float)fo each wheel (RL,RR,FL,RF)
